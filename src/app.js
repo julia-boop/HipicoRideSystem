@@ -15,10 +15,10 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 app.use('/', mainRouter);
-app.use('/user', userRouter);
+app.use('/hipico', userRouter);
 app.use('/concurso', concursoRouter);
 
 
-app.listen(3000, function(){
+app.listen(3001, function(){
     console.log('el servidor esta corriendoooooooo :)')
 })

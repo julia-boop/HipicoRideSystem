@@ -3,6 +3,8 @@
   <%- include('./partials/head') %> 
 <body>
   <%- include('./partials/header') %> 
+  <h1 class="pruebaTitle">Registrarse</h1>
+
       <div class="formContainer">
           <form action="">
               <label for="name">Nombre</label>
@@ -11,11 +13,15 @@
               <input type="text" name="surname">
               <label for="phone">Telefono</label>
               <input type="tel" name="phone">
+              <label for="adress">Direccion</label>
+              <input type="text" name="adress">
+              <label for="logo">Logo</label>
+              <input type="file" name="logo">
               <label for="email">Email</label>
               <input type="email" name="email" id="">
               <label for="password">Contraseña</label>
               <input type="password" name="password">
-              <p>¿Ya tenes cuenta? <a href="/user/login">Inicia sesión acá</a></p> 
+              <p>¿Ya tenes cuenta? <a href="/hipico/login">Inicia sesión acá</a></p> 
               <button type="submit">Iniciar Sesion</button>
           </form>
       </div>

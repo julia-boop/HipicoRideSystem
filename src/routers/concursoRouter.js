@@ -8,6 +8,5 @@ router.get('/:idConcurso/detail', concursoController.cDetail);
 router.get('/:idConcurso/:idPrueba/detail', concursoController.pDetail);
 router.get('/:idConcurso/:idPrueba/edit', concursoController.pEdit);
 router.get('/:idConcurso/edit', concursoController.cEdit);
-router.get('/:idConcurso/:idPrueba/inscripcion', concursoController.iForm);
 
 module.exports = router;
