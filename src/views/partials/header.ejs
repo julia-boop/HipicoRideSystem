@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand navbar-light bg-light navv" >
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">RideSystem <strong>.Hipico</strong></a>
+      <a class="navbar-brand" href="/">RideSystem<strong>.Hipico</strong></a>
       
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -11,9 +11,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/contacto">Contacto/FAQs</a>
           </li>
-          <% if(typeof(userLoggedIn) != 'undefined'){ %> 
+          <% if(typeof(hipicoLoggeado) != 'undefined'){ %> 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/hipico/<%= userLoggedIn.id %>/account">Cuenta</a>
+              <a class="nav-link active" aria-current="page" href="/hipico/<%= hipicoLoggeado.id %>/account">Cuenta</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/hipico/logout">Cerrar Sesión</a>
@@ -55,16 +55,16 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/contacto">Contacto/FAQs</a>
           </li>
-          <% if(typeof(userLoggedIn) != 'undefined'){ %> 
+          <% if(typeof(hipicoLoggeado) != 'undefined'){ %> 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/user/<%= userLoggedIn.id %>/account">Cuenta</a>
+              <a class="nav-link active" aria-current="page" href="/hipico/<%= hipicoLoggeado.id %>/account">Cuenta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/user/logout">Cerrar Sesión</a>
+              <a class="nav-link active" aria-current="page" href="/hipico/logout">Cerrar Sesión</a>
             </li>
           <% } else {%> 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/user/login">Iniciar Sesion</a>
+            <a class="nav-link active" aria-current="page" href="/hipico/login">Iniciar Sesion</a>
           </li>
           <% } %> 
           
