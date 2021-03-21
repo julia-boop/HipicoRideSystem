@@ -1,0 +1,2 @@
+id,nombre,siglas,logo,direccion,mail,contrasena,integrator,token,pago_deuda,pago_mes,pago_com,habilitado
+1,"Club Hipico Argentino",CHA,logo.jpg,NULL,cha@gmail.com,NULL,NULL,NULL,NULL,NULL,NULL,NULL

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %> 
+<body>
+    <%- include('./partials/header') %> 
+      <h1 class="pruebaTitle">Edición de Cuenta</h1>
+      <div class="formContainer">
+          <form action="/user/<%= usuario.id %>/edit?_method=put" method="POST" >
+              <label for="name">Nombre</label>
+              <input type="text" value="<%= usuario.nombre %> " name="nombre">
+              <label for="surname">Apellido</label>
+              <input type="text" name="apellido" value="<%= usuario.apellido %> ">
+              <label for="email">Email</label>
+              <input type="email" name="email" value="<%= usuario.email %> ">
+              <label for="phone">Telefono</label>
+              <input type="tel" name="telefono" value="<%= usuario.telefono %> ">
+              <button type="submit">Editar Datos</button>
+          </form>
+      </div>
+      <%- include('./partials/scripts') %> 
+      </body>

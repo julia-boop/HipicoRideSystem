@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %> 
+<body>
+  <%- include('./partials/header') %> 
+  <h1 class="pruebaTitle">Inciar Sesion</h1>
+
+      <div class="formContainer">
+          <form action="/hipico/login" method="POST">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" name="contrasena">
+              <p>¿Todavía no tenes cuenta? <a href="/contact">Contactate con nosotros para gestionar una!</a></p> 
+              <button type="submit">Iniciar Sesion</button>
+          </form>
+      </div>
+      <%- include('./partials/scripts') %>
+      </body>

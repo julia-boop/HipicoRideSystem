@@ -4,12 +4,11 @@
 <body>
     <%- include('./partials/header') %> 
       <div class="infoConcurso">
+          <img src="/images/logo.jpg" alt="">
           <h1>Nombre del concurso</h1>
           <h2>Club que lo hospeda</h2>
           <h3>16 de Marzo al 18 de Marzo</h3>
           <h4><a href="">Mira el anteprograma!</a></h4>
-          <h4><a href="/concurso/1/edit">Editar Concurso</a></h4>
-          <h4><a href="/concurso/1/edit">Finalizar Concurso</a></h4>
       </div>
       <div class="pruebasContainer">
           <h3>Pruebas</h3>
@@ -17,6 +16,8 @@
           <div class="tableContainer">
                 <table>
                     <tr>
+                        <th></th>
+                        <th></th>
                         <th>Dia</th>
                         <th>Hora</th>
                         <th>Numero</th>
@@ -27,10 +28,10 @@
                         <th>Categoria</th>
                         <th>Valor</th>
                         <th>Cantidad</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     <tr>
+                        <td><a href="/concurso/1/2/inscripcion">Inscribirme</a></td>
+                        <td><a href="/concurso/1/2/detail">Detalle</a></td>
                         <td>Jueves 16</td>
                         <td>8:00</td>
                         <td>1</td>
@@ -40,25 +41,7 @@
                         <td>1.1.1.1</td>
                         <td>2nd y Amateur</td>
                         <td>$2200</td>
-                        <td>53</td>
-                        <td><a href="/concurso/1/2/edit">Editar</a></td>
-                        <td><a href="/concurso/1/2/detail">Detalle</a></td>
-                    </tr>
-                    <tr>
-                        <form action=""></form>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><input type="text" class="prue"></td>
-                        <td><button style="padding: 5px;" type="submit" class="but">Crear</button></td>
-                        <td></td>
-                        </form>
+                        <td>53</td>            
                     </tr>
                 </table>
             </div>

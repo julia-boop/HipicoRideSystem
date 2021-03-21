@@ -3,7 +3,7 @@ const router = express.Router();
 const mainController = require('../controllers/mainController');
 
 router.get('/', mainController.home);
-router.get('/contacto', mainController.contact);
-router.get('/:idUser/hipico', mainController.eAdmin);
+router.get('/contact', mainController.contact);
+
 
 module.exports = router
