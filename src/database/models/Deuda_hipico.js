@@ -28,6 +28,13 @@ module.exports = (sequelize, dataTypes) => {
       underscored: true
     };
     const Deuda_hipico = sequelize.define(alias, cols, config);  
+
+    Deuda_hipico.associate = function(models){
+      Deuda_hipico.belongsTo(models.Concurso, {
+        as: 'Deuda',
+        foreignKey: 'concurso_id',
+      });
+    }
     
     return Deuda_hipico;
   }

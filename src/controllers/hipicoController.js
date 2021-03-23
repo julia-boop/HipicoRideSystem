@@ -82,5 +82,9 @@ module.exports = {
         })
         return res.redirect('/hipico/' + hFound.id + '/account');
         //return res.render('panelHipico')
+    },
+    logout: (req, res) => {
+        req.session.destroy()
+        res.redirect('/')
     }
 }

@@ -23,7 +23,9 @@ module.exports = {
                 model:'pruebas',
                 key:'id'
             }
-          }
+          },
+          created_at: Sequelize.DataTypes.DATE,
+          updated_at: Sequelize.DataTypes.DATE
     })
   },
 

@@ -19,7 +19,9 @@ module.exports = {
           total: {
             type: Sequelize.DataTypes.INTEGER(10),
             allowNull: false
-          }
+          },
+          created_at: Sequelize.DataTypes.DATE,
+          updated_at: Sequelize.DataTypes.DATE
     })
   },
 

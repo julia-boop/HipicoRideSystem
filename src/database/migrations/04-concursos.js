@@ -37,7 +37,9 @@ module.exports = {
           },
           estado: {
             type: Sequelize.DataTypes.INTEGER(10).UNSIGNED,
-          }
+          },
+          created_at: Sequelize.DataTypes.DATE,
+          updated_at: Sequelize.DataTypes.DATE
     })
   },
 

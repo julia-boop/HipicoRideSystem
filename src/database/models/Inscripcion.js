@@ -34,7 +34,7 @@ module.exports = (sequelize, dataTypes) => {
     };
     const config = {
       tableName: 'inscripciones',
-      timestamps: false,
+      timestamps: true,
       underscored: true
     };
     const Inscripcion = sequelize.define(alias, cols, config); 

@@ -10,7 +10,17 @@
           </div>
       </div>
       <div class="concursosContainer row">
+
+        <% for(let i = 0 ; i < concurso.length ; i++){ %>
           <div class="">
+            <img src="/images/<%= concurso[i].Hipico.logo %> " alt="">
+            <h1><%= concurso[i].Hipico.nombre %> </h1>
+            <h2><%= concurso[i].nombre %> </h2>
+            <h3><%= concurso[i].fecha %> </h3>
+            <a href="/concurso/<%= concurso[i].id %>/detail">Mira las pruebas disponibles!</a>
+          </div>
+        <% } %>  
+          <!-- <div class="">
             <img src="/images/logo.jpg" alt="">
             <h1>Nombre del Club</h1>
             <h2>Nombre del Concurso</h2>
@@ -37,7 +47,7 @@
             <h2>Nombre del Concurso</h2>
             <h3>12 de Marzo al 15 de Marzo</h3>
             <a href="">Mira las pruebas disponibles!</a>
-          </div>
+          </div> -->
       </div>
       <%- include('./partials/scripts') %>
 

@@ -8,6 +8,7 @@ router.post('/login', hipicoController.enter);
 router.get('/:idHipico/account', hipicoController.account);
 router.put('/:idHipico/account', hipicoController.update);
 
+router.get('/logout', hipicoController.logout);
 
 
 module.exports = router
