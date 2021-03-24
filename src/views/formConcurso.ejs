@@ -16,9 +16,9 @@
               <label for="hipico">Club Hipico</label>
                 <select name="hipico" id="">
                     <option value=""></option>
-                    <option value="1">CHA</option>
-                    <option value="2">CAE</option>
-                    <option value="3">SJV</option>
+                    <% for(let i = 0 ; i < hipico.length ; i++){ %> 
+                        <option value="<%= hipico[i].id %>"><%= hipico[i].siglas %> </option>
+                    <% } %> 
                 </select>
               <button type="submit">Crear Concurso</button>
           </form>

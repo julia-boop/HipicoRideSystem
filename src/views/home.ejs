@@ -14,34 +14,19 @@
     <div class="concursosContainer row">
       <a style="text-align: center; margin-bottom: 50px; font-size: 20px; color: black;" href="/concurso/crear" class="col-12" >Crear Nuevo Concurso</a>
 
+      <% for(let i = 0 ; i < 4 ; i++){ %> 
         <div class="">
-          <img src="/images/logo.jpg" alt="">
-          <h1>Nombre del Club</h1>
-          <h2>Nombre del Concurso</h2>
-          <h3>12 de Marzo al 15 de Marzo</h3>
-          <a href="/concurso/1/detail">Mira las pruebas disponibles!</a>
+          <img src="/images/<%= concurso[i].Hipico.logo %> " alt="">
+          <h1><%= concurso[i].Hipico.nombre %> </h1>
+          <h2><%= concurso[i].nombre %> </h2>
+          <h3><%= concurso[i].fecha %> </h3>
+          <a href="/concurso/<%= concurso[i].id %>/edit">Editar Concurso</a>
+          <a href="/concurso/<%= concurso[i].id %>/detail">Inspeccionar Concurso</a>
+
         </div>
-        <div class="">
-          <img src="/images/logo.jpg" alt="">
-          <h1>Nombre del Club</h1>
-          <h2>Nombre del Concurso</h2>
-          <h3>12 de Marzo al 15 de Marzo</h3>
-          <a href="">Mira las pruebas disponibles!</a>
-        </div>
-        <div class="">
-          <img src="/images/logo.jpg" alt="">
-          <h1>Nombre del Club</h1>
-          <h2>Nombre del Concurso</h2>
-          <h3>12 de Marzo al 15 de Marzo</h3>
-          <a href="">Mira las pruebas disponibles!</a>
-        </div>
-        <div class="">
-          <img src="/images/logo.jpg" alt="">
-          <h1>Nombre del Club</h1>
-          <h2>Nombre del Concurso</h2>
-          <h3>12 de Marzo al 15 de Marzo</h3>
-          <a href="">Mira las pruebas disponibles!</a>
-        </div>
+      <% } %> 
+
+        
         <a style="text-align: center; margin-bottom: 50px; font-size: 20px; color: black;" href="/concurso" class="col-12" >Ver todos los concursos disponibles</a>
      </div>   
     <%- include('./partials/scripts') %></body>

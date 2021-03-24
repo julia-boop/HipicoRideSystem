@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %> 
+<body>
+    <%- include('./partials/header') %> 
+    <h1 class="pruebaTitle">Edicion de Concurso</h1>
+      <div class="formContainer">
+          <form action="/concurso/<%= concurso.id %>/edit" method="POST">
+              <label for="name">Nombre</label>
+              <input type="text" name="nombre" value="<%= concurso.nombre %> ">
+              <label for="date">Fecha</label>
+              <input type="text" name="fecha" value="<%= concurso.fecha %> ">
+              <label for="program">Anteprograma (link)</label>
+              <input type="url" name="programa" value="<%= concurso.anteprograma %> ">
+              <label for="hipico">Club Hipico</label>
+                <select name="hipico" id="">
+                    <% for(let i = 0; i < hipico.length; i++){ %> 
+                        <option value="<%=hipico[i].id%>" <%=(hipico[i].id == concurso.hipico_id) ? 'selected' : ''%>> <%=hipico[i].siglas%> </option>
+                    <% } %> 
+                </select>
+              <button type="submit">Guardar Cambios</button>
+          </form>
+      </div>
+      </body>

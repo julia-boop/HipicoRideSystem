@@ -28,11 +28,19 @@ module.exports = {
     pEdit: function(req, res){
         res.render('formPruebaEdit');
     },
-    cEdit: function(req, res){
-        res.render('formConcursoEdit');
+    cEdit: async function(req, res){
+        let hipico = await db.Hipico.findAll();
+        let concurso = await db.Concurso.findByPk(req.params.idConcurso);
+        return res.render('formConcursoEdit', {hipico, concurso})
     }, 
     cForm: function(req, res){
-        res.render('formConcurso')
+        db.Hipico.findAll()
+        .then((hipico) => {
+            res.render('formConcurso', {hipico})
+        })
+        .catch((e) => {
+            res.send(e)
+        })
     },
     cCreate: function(req, res){
         db.Concurso.create({
@@ -45,7 +53,7 @@ module.exports = {
             estado: 1
         })
         .then((concurso)=> {
-            res.render('concursos')
+            res.redirect('/concurso')
         })
         .catch((e) => {
             res.send(e)
