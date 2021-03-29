@@ -13,11 +13,24 @@
 
         <% for(let i = 0 ; i < concurso.length ; i++){ %>
           <div class="">
-            <img src="/images/<%= concurso[i].Hipico.logo %> " alt="">
-            <h1><%= concurso[i].Hipico.nombre %> </h1>
+            <img src="/images/uploads/<%= concurso[i].Hipico.logo %> " alt="">
+            <h1 style="text-align: center;"><%= concurso[i].Hipico.nombre %> </h1>
             <h2><%= concurso[i].nombre %> </h2>
             <h3><%= concurso[i].fecha %> </h3>
-            <a href="/concurso/<%= concurso[i].id %>/detail">Mira las pruebas disponibles!</a>
+            <% if(typeof(hipicoLoggeado) != 'undefined'){ %> 
+              <% if(hipicoLoggeado.habilitado == 2 && hipicoLoggeado.id == concurso[i].Hipico.id){ %> 
+                <a href="/concurso/<%= concurso[i].id %>/edit">Editar Concurso</a>
+                <a href="/concurso/<%= concurso[i].id %>/detail">Inspeccionar Concurso</a>
+              <% } else {%>  
+                <a href="/habilitacion">Habilita tu cuenta para poder crear concursos!</a>
+                <a href="/concurso/<%= concurso[i].id %>/detail">Mirar las pruebas disponibles</a>            
+            
+              <% } %>  
+          <% } else { %>           
+            <a href="/concurso/<%= concurso[i].id %>/detail">Mirar las pruebas disponibles</a>            
+            
+          <% } %>  
+
           </div>
         <% } %>  
           <!-- <div class="">

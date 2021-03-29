@@ -7,16 +7,16 @@
     ;">Panel de Administración para Organizaciones Hipicas</h1>
           <h2 style="width: 100%; text-align: center;">Mis Datos</h2>
     <div class="infoHipico formContainer">
-      <form action="/hipico/<%= hipico.id %>/account?_method=put" method="POST" >
+      <form action="/hipico/<%= hipico.id %>/account?_method=put" method="POST" enctype="multipart/form-data">
         <label for="name">Nombre</label>
         <input type="text" name="nombre" id="" value="<%= hipico.nombre %> ">
         <label for="name">Siglas</label>
         <input type="text" name="siglas" id="" value="<%= hipico.siglas %> ">
-        <!-- <label for="logo">Logo</label>
-        <div style="width: 20%; background-color: pink; height: 20%;">
-            <img style="width: 100%; height: 100%;" src="/images/logo.jpg" alt="">
+        <label for="logo">Logo</label>
+        <div style="width: 30%; background-color: grey; height: 15%;">
+            <img style="width: 100%; height: 100%;" src="/images/uploads/<%= hipico.logo %> " alt="">
         </div>
-        <input type="file"> -->
+        <input type="file" name="logo">
         <label for="adress">Direccion</label>
         <input type="text" name="direccion" value="<%= hipico.direccion %> ">
         <label for="email">Email</label>

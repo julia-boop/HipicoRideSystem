@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %> 
+<body>
+  <%- include('./partials/header') %> 
+  <h1 class="pruebaTitle">Registarse</h1>
+
+      <div class="formContainer">
+          <form action="/hipico/register" method="POST" enctype="multipart/form-data">
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre">
+              <label for="siglas">Siglas</label>
+              <input type="text" name="siglas">
+              <label for="direccion">Direccion</label>
+              <input type="tel" name="direccion">
+              <label for="logo">Logo</label>
+              <input type="file" name="logo">
+              <label for="mail">Email</label>
+              <input type="email" name="mail" id="">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" name="contrasena">
+              <p>¿Ya tenes cuenta? <a href="/hipico/login">Inicia sesión acá</a></p> 
+              <button type="submit">Registrame :)</button>
+          </form>
+      </div>
+      <%- include('./partials/scripts') %>
+      </body>

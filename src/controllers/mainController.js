@@ -18,6 +18,9 @@ module.exports = {
     }, 
     contact: function(req, res){
         res.render('contact')
+    },
+    habilitacion: (req, res) => {
+        res.render('habilitacion')
     }
 }
     

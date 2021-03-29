@@ -2,52 +2,54 @@ const db = require('../database/models');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
+    register: (req, res) => {
+        res.render('hipicoRegister')
+    },
+    save: (req, res) => {
+        db.Hipico.create({
+            nombre: req.body.nombre,
+            siglas: req.body.siglas,
+            logo: (req.files[0] == undefined) ? 'default.jpeg' : req.files[0].filename,
+            direccion: req.body.direccion,
+            mail: req.body.mail,
+            contrasena: bcrypt.hashSync(req.body.contrasena, 12),
+            habilitado: 1
+        })
+        .then((hipico) => {
+            req.session.hipicoSession = hipico.id
+            req.session.habilitado = hipico.habilitado
+            res.redirect('/')
+        })
+        .catch((e) => {
+            res.send(e)
+        })
+    },
     login: (req, res) => {
         res.render('hipicoLogin')
     },
-    enter: async (req, res) => {
-
-        let hLog = await db.Hipico.findOne( {
+    enter: (req, res) => {
+        db.Hipico.findOne({
             where: {
-                mail: req.body.email
+                mail: req.body.mail
             }
         })
-
-        if(hLog){
-            if(hLog.contrasena == ''){
-               let hUpdate = await  db.Hipico.update({
-                    nombre: hLog.nombre,
-                    siglas: hLog.siglas,
-                    logo: hLog.logo,
-                    direccion: hLog.direccion,
-                    mail: hLog.mail,
-                    contrasena: bcrypt.hashSync(req.body.contrasena, 12),
-                    integrator: hLog.integrator,
-                    token: hLog.token, 
-                    pago_deuda: hLog.deuda, 
-                    pago_mes: hLog.pago_mes,
-                    pago_com: hLog.pago_com,
-                    habilitado: hLog.habilitado,
-                    created_at: hLog.created_at,
-                    updated_at: hLog.updated_at
-                },{
-                    where: {
-                        id: hLog.id
-                    }
-                })
-                req.session.hipicoSession = hLog.id
-                return res.redirect('/')
-            } else {
-                if(bcrypt.compareSync(req.body.contrasena, hLog.contrasena)){
-                    req.session.hipicoSession = hLog.id
-                    return res.redirect('/')
+        .then((hipico) => {
+            if(hipico){
+                if(bcrypt.compareSync(req.body.contrasena, hipico.contrasena)){
+                    req.session.hipicoSession = hipico.id
+                    req.session.habilitado = hipico.habilitado
+                    console.log(req.session)
+                    res.redirect('/')
                 }else{
-                    return res.render('hipicoLogin');
+                    res.render('hipicoLogin')
                 }
+            }else{
+                res.render('hipicoLogin')
             }
-        } else {
-            return res.render('hipicoLogin');
-        }
+        })
+        .catch((e) => {
+            res.send(e)
+        })
     },
     account: (req, res) => {
         db.Hipico.findByPk(req.params.idHipico)
@@ -63,7 +65,7 @@ module.exports = {
         let hUpdate = await  db.Hipico.update({
             nombre: req.body.nombre,
             siglas: req.body.siglas,
-            logo: hFound.logo,
+            logo: req.files[0].filename,
             direccion: req.body.direccion,
             mail: req.body.mail,
             contrasena: hFound.contrasena,
@@ -80,6 +82,7 @@ module.exports = {
                 id: hFound.id
             }
         })
+        
         return res.redirect('/hipico/' + hFound.id + '/account');
         //return res.render('panelHipico')
     },

@@ -6,9 +6,9 @@ async function createLocals(req, res, next) {
         if(hipico) {
             res.locals.hipicoLoggeado = {
                 id: hipico.id,
-                rol: hipico.rol
+                habilitado: hipico.habilitado
             }
-        }
+        } 
     }
 
     next()
