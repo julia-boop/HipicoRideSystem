@@ -52,7 +52,7 @@ module.exports = (sequelize, dataTypes) => {
 
       Concurso.hasMany(models.Prueba, {
         as: 'Prueba',
-        foreignKey: 'prueba_id'
+        foreignKey: 'concurso_id'
       });
 
       Concurso.belongsTo(models.Hipico, {

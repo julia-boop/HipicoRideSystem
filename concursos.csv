@@ -1,0 +1,4 @@
+id,nombre,fecha,anteprograma,total_rec,hipico_id,pagado,estado,created_at,updated_at
+9,Republica,"12 de Marzo ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,NULL,7,NULL,2,"2021-03-29 03:11:16","2021-03-29 03:11:16"
+10,"Sol De Mayo","13 de Abril",https://www.youtube.com/watch?v=9Qzmri1WaaE,NULL,7,NULL,1,"2021-03-29 03:11:53","2021-03-29 03:11:53"
+11,"Internacional CAE","14 de Mayo ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,NULL,8,NULL,1,"2021-03-29 03:34:49","2021-03-29 15:46:47"

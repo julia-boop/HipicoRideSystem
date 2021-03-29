@@ -13,14 +13,9 @@
               <input type="text" name="fecha">
               <label for="program">Anteprograma (link)</label>
               <input type="url" name="programa">
-              <label for="hipico">Club Hipico</label>
-                <select name="hipico" id="">
-                    <option value=""></option>
-                    <% for(let i = 0 ; i < hipico.length ; i++){ %> 
-                        <option value="<%= hipico[i].id %>"><%= hipico[i].siglas %> </option>
-                    <% } %> 
-                </select>
               <button type="submit">Crear Concurso</button>
           </form>
       </div>
+      <%- include('./partials/scripts') %>
+
       </body>

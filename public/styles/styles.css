@@ -246,6 +246,16 @@ svg:focus{
    border-radius: 5px;
 }
 
+.formContainer input[type=checkbox]{
+    margin: 0px;
+    margin-right: 5px;
+    width: min-content;
+}
+
+.formContainer p {
+    text-align: left;
+}
+
 /* --------------------------CONCURSOS-------------------------- */
 
 .portadaConcurso img {
@@ -306,6 +316,10 @@ svg:focus{
 
 .concursosContainer div a:hover, a:focus {
     text-decoration: underline;
+}
+
+.fin{
+    opacity: 0.3;
 }
 
 

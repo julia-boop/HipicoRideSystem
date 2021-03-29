@@ -38,6 +38,9 @@ module.exports = (sequelize, dataTypes) => {
       articulo: {
           type: dataTypes.STRING(100)
       },
+      precio: {
+        type: dataTypes.INTEGER(10)
+      },
       anotados: {
           type: dataTypes.INTEGER(100).UNSIGNED
       },
@@ -81,7 +84,7 @@ module.exports = (sequelize, dataTypes) => {
 
       Prueba.belongsTo(models.Concurso, {
         as: 'Concurso',
-        foreignKey: 'prueba_id'
+        foreignKey: 'concurso_id'
       });
   
     };

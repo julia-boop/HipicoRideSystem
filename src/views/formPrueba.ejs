@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %> 
+<body>
+  <%- include('./partials/header') %> 
+      <h1 class="pruebaTitle">Creación de Prueba</h1>
+      <div class="formContainer">
+        <form action="/concurso/<%= concurso.id %>/pPrueba" method="POST">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre">
+            <label for="day">Dia</label>
+            <input type="text" name="dia">
+            <label for="hour">Hora</label>
+            <input type="text" name="hora">
+            <label for="number">Numero</label>
+            <input type="text" name="numero">
+            <label for="type">Tipo</label>
+            <input type="text" name="tipo">
+            <label for="article">Articulo</label>
+            <input type="text" name="articulo">
+            <label for="height">Altura</label>
+            <input type="text" name="altura">
+            <label for="definition">Definicion</label>
+            <input type="text" name="definicion">
+            <label for="category">Categoria</label>
+            <% for(let i = 0 ; i < categorias.length ; i++){ %> 
+            <p style="width: 60%;"><input type="checkbox" name="categoria" value="<%= categorias[i].id %> "><%= categorias[i].nombre %> </p>
+            <% } %> 
+            <label for="price">Valor</label>
+            <input type="number" name="precio">
+            <button type="submit">Crear</button>
+        </form>
+      </div>
+      <%- include('./partials/scripts') %>
+
+      </body>

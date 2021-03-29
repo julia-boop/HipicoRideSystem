@@ -37,6 +37,9 @@ module.exports = {
           articulo: {
               type: Sequelize.DataTypes.STRING(100)
           },
+          precio: {
+            type: Sequelize.DataTypes.INTEGER(10)
+          },
           anotados: {
               type: Sequelize.DataTypes.INTEGER(100).UNSIGNED
           },

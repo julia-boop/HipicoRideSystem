@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %> 
+<body>
+  <%- include('./partials/header') %> 
+      <h1 class="pruebaTitle">Edición de Prueba</h1>
+      <div class="formContainer">
+        <form action="/concurso/<%= prueba.concurso_id%>/<%= prueba.id %>/edit?_method=put" method="POST">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" value="<%= prueba.nombre %> ">
+            <label for="day">Dia</label>
+            <input type="text" name="dia" value="<%= prueba.dia %> ">
+            <label for="hour">Hora</label>
+            <input type="text" name="hora" value="<%= prueba.hora %> ">
+            <label for="number">Numero</label>
+            <input type="text" name="numero" value="<%= prueba.dia %> ">
+            <label for="type">Tipo</label>
+            <input type="text" name="tipo" value="<%= prueba.tipo %> ">
+            <label for="article">Articulo</label>
+            <input type="text" name="articulo" value="<%= prueba.articulo %> " >
+            <label for="height">Altura</label>
+            <input type="text" name="altura" value="<%= prueba.altura %> ">
+            <label for="definition">Definicion</label>
+            <input type="text" name="definicion" value="<%= prueba.definicion %> ">
+            <label for="category">Categoria</label>
+            <% for(let i = 0 ; i < categorias.length ; i++){ %> 
+                <p style="width: 60%;"><input 
+                <% prueba.Categoria.forEach(function(elemento) {%> 
+                    <%= (categorias[i].id == elemento.id) ? 'checked':'' %>
+                <% }) %> 
+                type="checkbox" name="categoria" value="<%= categorias[i].id %> "><%= categorias[i].nombre %> </p>
+            <% } %> 
+            <label for="price">Valor</label>
+            <input type="text" name="precio" value="<%= prueba.precio %> ">
+            <button type="submit">Editar</button>
+        </form>
+      </div>
+      <%- include('./partials/scripts') %>
+
+      </body>
