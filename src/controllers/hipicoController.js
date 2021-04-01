@@ -51,14 +51,37 @@ module.exports = {
             res.send(e)
         })
     },
-    account: (req, res) => {
-        db.Hipico.findByPk(req.params.idHipico)
-        .then((hipico) => {
-            res.render('panelHipico', {hipico});
+    account: async (req, res) => {
+        let hipico = await db.Hipico.findByPk(req.params.idHipico)
+        let concursos = await db.Concurso.findAll({
+            where: {
+                hipico_id: req.params.idHipico
+            }
         })
-        .catch((e) => {
-            res.send(e)
-        })
+        let pruebas = []
+        for(let i = 0 ; i < concursos.length ; i ++){
+            pruebas.push(await db.Prueba.findAll({
+                include: [{association:'Concurso'}],
+                where: {
+                    concurso_id: concursos[i].id
+                }
+            }))
+        }
+        let gananciaActual = null
+        for(let i = 0 ; i < pruebas.length ; i ++){
+            if(pruebas[i].Concurso.estado == 1){
+                gananciaActual+=Number(pruebas[i].anotados*pruebas[i].precio)
+            }
+        }
+        console.log(gananciaActual)
+
+        
+        
+        return res.send(pruebas)
+        // return res.send(concursos)
+        return res.render('panelHipico', {hipico});
+        
+        
     },
     update: async (req, res) => {
         let hFound = await db.Hipico.findByPk(req.params.idHipico)

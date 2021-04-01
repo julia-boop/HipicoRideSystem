@@ -25,6 +25,7 @@ router.get('/:idConcurso/edit', isEnabled, concursoController.cEdit);
 router.put('/:idConcurso/edit', isEnabled, concursoController.cUpdate);
 
 router.get('/:idConcurso/finalizar', isEnabled, concursoController.fin);
+router.get('/:idConcurso/cerrado', isEnabled, concursoController.closed);
 
 
 module.exports = router;

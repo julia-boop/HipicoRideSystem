@@ -1,3 +1,3 @@
 id,nombre,siglas,logo,direccion,mail,contrasena,integrator,token,pago_deuda,pago_mes,pago_com,habilitado,created_at,updated_at
-7,"Club Hipico Argentino",CHA,logo-1616987278821.JPG,"Av. Pres. Figueroa Alcorta 7285",cha@gmail.com,$2a$12$hS0YER0tT1U8vzwGtdcEIOSWnm0dUldmTQaQ0attPmoaeRsDiJqjG,NULL,NULL,NULL,NULL,NULL,1,"2021-03-29 03:07:59","2021-03-29 03:07:59"
-8,"Club Aleman de Equitacion",CAE,logo-1616988677762.jpg,asasas,cae@gmail.com,$2a$12$XgKe0.6/KlhRh46c9KeeVel38uljC8q0z8EnwyXc47q.JK1rBV3Jq,NULL,NULL,NULL,NULL,NULL,2,"2021-03-29 03:31:18","2021-03-29 03:31:18"
+7,"Club Hipico Argentino",CHA,logo-1616987278821.JPG,"Av. Pres. Figueroa Alcorta 7285",cha@gmail.com,$2a$12$hS0YER0tT1U8vzwGtdcEIOSWnm0dUldmTQaQ0attPmoaeRsDiJqjG,,,1,1,1,1,"2021-03-29 03:07:59","2021-03-29 03:07:59"
+8,"Club Aleman de Equitacion",CAE,logo-1616988677762.jpg,asasas,cae@gmail.com,$2a$12$XgKe0.6/KlhRh46c9KeeVel38uljC8q0z8EnwyXc47q.JK1rBV3Jq,,,1,1,1,2,"2021-03-29 03:31:18","2021-03-29 03:31:18"

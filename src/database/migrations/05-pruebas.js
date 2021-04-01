@@ -28,6 +28,9 @@ module.exports = {
           hora: {
             type: Sequelize.DataTypes.STRING(100)
           }, 
+          pista: {
+            type: Sequelize.DataTypes.STRING(100)
+          }, 
           numero: {
               type: Sequelize.DataTypes.INTEGER(10).UNSIGNED
           },

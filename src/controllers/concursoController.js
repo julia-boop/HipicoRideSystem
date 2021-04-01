@@ -60,6 +60,7 @@ module.exports = {
             numero: req.body.numero,
             tipo: req.body.tipo,
             articulo: req.body.articulo, 
+            pista: req.body.pista, 
             definicion: req.body.definicion,
             precio: req.body.precio,
             altura: req.body.altura,
@@ -76,24 +77,27 @@ module.exports = {
         let arrCategoria = [];
         if (req.body.categoria.length == 1){
             arrCategoria.push(req.body.categoria);
-            console.log('es solo 1 categoria')
-            let categoria = arrCategoria.map(elemento => {
+
+            let cat = arrCategoria.map(elemento => {
                 return {
                     prueba_id: prueba.id,
                     categoria_id: elemento
                 }
             })
-            let categorias = await db.Categoria_prueba.bulkCreate(categoria); 
+            db.Categoria_prueba.bulkCreate(cat); 
+            return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
+
         }else{
-            let categoria = req.body.categoria.map(elemento => {
+            let cat = req.body.categoria.map(elemento => {
                 return {
                     prueba_id: prueba.id,
                     categoria_id: elemento
                 }
             })
-            let categorias = await db.Categoria_prueba.bulkCreate(categoria);
+            db.Categoria_prueba.bulkCreate(cat);
+            return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
+
         }
-        return res.redirect('/concurso/'+ req.params.idConcurso + '/detail')
     },
     cEdit: async function(req, res){
         let hipico = await db.Hipico.findAll();
@@ -161,6 +165,7 @@ module.exports = {
             tipo: req.body.tipo,
             articulo: req.body.articulo, 
             definicion: req.body.definicion,
+            pista: req.body.pista, 
             precio: req.body.precio,
             altura: req.body.altura,
             concurso_id: req.params.idConcurso,
@@ -172,24 +177,27 @@ module.exports = {
         let arrCategoria = [];
         if (req.body.categoria.length == 1){
             arrCategoria.push(req.body.categoria);
-            console.log('es solo 1 categoria')
-            let categoria = arrCategoria.map(elemento => {
+
+            let cat = arrCategoria.map(elemento => {
                 return {
                     prueba_id: prueba.id,
                     categoria_id: elemento
                 }
             })
-            let categorias = await db.Categoria_prueba.bulkCreate(categoria); 
+            db.Categoria_prueba.bulkCreate(cat); 
+            return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
+
         }else{
-            let categoria = req.body.categoria.map(elemento => {
+            let cat = req.body.categoria.map(elemento => {
                 return {
                     prueba_id: prueba.id,
                     categoria_id: elemento
                 }
             })
-            let categorias = await db.Categoria_prueba.bulkCreate(categoria);
+            db.Categoria_prueba.bulkCreate(cat);
+            return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
+
         }
-        return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
     },
     fin: async (req, res) => {
         let pFin = await db.Prueba.update({
@@ -208,5 +216,20 @@ module.exports = {
         })
         return res.redirect('/concurso')
       
+    }, 
+    closed: (req, res) => {
+        db.Concurso.update({
+            estado: 3
+        }, {
+            where: {
+                id: req.params.idConcurso
+            }
+        })
+        .then((concurso) => {
+            res.redirect('/concurso/' + req.params.idConcurso + '/detail')
+        })
+        .catch((e) => {
+            res.send(e)
+        })
     }
 }

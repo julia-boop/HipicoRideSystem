@@ -1,4 +1,5 @@
 id,nombre,fecha,anteprograma,total_rec,hipico_id,pagado,estado,created_at,updated_at
-9,Republica,"12 de Marzo ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,NULL,7,NULL,2,"2021-03-29 03:11:16","2021-03-29 03:11:16"
-10,"Sol De Mayo","13 de Abril",https://www.youtube.com/watch?v=9Qzmri1WaaE,NULL,7,NULL,1,"2021-03-29 03:11:53","2021-03-29 03:11:53"
-11,"Internacional CAE","14 de Mayo ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,NULL,8,NULL,1,"2021-03-29 03:34:49","2021-03-29 15:46:47"
+9,Republica,"12 de Marzo ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,1,7,1,1,"2021-03-29 03:11:16","2021-03-29 03:11:16"
+10,"Sol De Mayo","13 de Abril",https://www.youtube.com/watch?v=9Qzmri1WaaE,1,7,1,1,"2021-03-29 03:11:53","2021-03-29 03:11:53"
+11,"Internacional ","14 de Mayo  ",https://stackoverflow.com/questions/48418680/enoent-no-such-file-or-directory,1,8,1,1,"2021-03-29 03:34:49","2021-03-29 22:05:26"
+12,"FEI Challenge","14 de Agosto",https://trello.com/b/eT81jP9E/ridesystem,NULL,8,NULL,1,"2021-03-29 22:08:06","2021-03-29 22:08:06"

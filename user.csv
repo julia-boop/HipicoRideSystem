@@ -1,0 +1,2 @@
+id,rol,email,contrasena,nombre,apellido,telefono,pais,created_at,updated_at
+1,1,crdr.jc@gmail.com,$2a$10$82CrYJi9EXNyBFR0l2mbZ.lv/P9rDXN1jBIuNCoCUArOL7i4c64FG,milla,"cordero ","+541165363144 ",NULL,"2021-03-29 19:38:52","2021-03-29 19:39:13"

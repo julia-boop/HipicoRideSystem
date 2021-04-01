@@ -4,7 +4,7 @@
 <body>
     <%- include('./partials/header') %> 
       <div class="infoConcurso">
-          <img src="/images/logo.jpg" alt="">
+          <img src="/images/uploads/<%= concurso.Hipico.logo %> " alt="">
           <h1><%= concurso.nombre %> </h1>
           <h2><%= concurso.Hipico.nombre %> </h2>
           <h3><%= concurso.fecha %> </h3>
@@ -12,6 +12,7 @@
             <% if (concurso.hipico_id == hipicoLoggeado.id) {%> 
                 <h4><a href="/concurso/<%= concurso.id %>/finalizar">Finalizar Concurso</a></h4>
                 <h4><a href="/concurso/<%= concurso.id %>/pPrueba">Crear Nueva Prueba</a></h4>
+                <h4><a href="/concurso/<%= concurso.id %>/cerrado">Cerrar Inscripciones</a></h4>
             <% } else {%> 
                 <h4><a href="<%= concurso.anteprograma %>">Mira el anteprograma!</a></h4>
             <% } %> 
@@ -30,6 +31,7 @@
                         <th>Nombre</th>
                         <th>Dia</th>
                         <th>Hora</th>
+                        <th>Pista</th>
                         <th>Numero</th>
                         <th>Tipo</th>
                         <th>Altura</th>
@@ -46,6 +48,7 @@
                             <td><%= concurso.Prueba[i].nombre %></td>
                             <td><%= concurso.Prueba[i].dia %></td>
                             <td><%= concurso.Prueba[i].hora %></td>
+                            <td><%= concurso.Prueba[i].pista %></td>
                             <td><%= concurso.Prueba[i].numero %></td>
                             <td><%= concurso.Prueba[i].tipo %></td>
                             <td><%= concurso.Prueba[i].altura %></td>
