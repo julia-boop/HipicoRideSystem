@@ -12,7 +12,12 @@
     <h1 class="pruebaTitle">Próximos concursos...</h1>
 
     <div class="concursosContainer row">
-      <a style="text-align: center; margin-bottom: 50px; font-size: 20px; color: black;" href="/concurso/crear" class="col-12" >Crear Nuevo Concurso</a>
+      <% if(typeof(hipicoLoggeado) != 'undefined'){ %> 
+        <% if(hipicoLoggeado.habilitado == 2){ %> 
+          <a style="text-align: center; margin-bottom: 50px; font-size: 20px; color: black;" href="/concurso/crear" class="col-12" >Crear Nuevo Concurso</a>
+        <% } %> 
+      <% } %> 
+      
 
       <% for(let i = 0 ; i < 3 ; i++){ %> 
         <div class="<%=(concurso[i].estado == 2) ? 'fin' : ''%>">

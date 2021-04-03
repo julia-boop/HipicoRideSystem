@@ -38,8 +38,38 @@ module.exports = {
     iForm: function(req, res){
         res.render('formInscripcion');
     }, 
-    pDetail: function(req, res){
-        res.render('detallePrueba')
+    pDetail: async function(req, res){
+        let inscripcionesTodas = await db.Inscripcion.findAll({
+            include: [
+                {
+                    association: 'Prueba',
+                    include: [
+                        {association: 'Concurso', 
+                        include: [{association: 'Hipico'}]
+                    }
+                    ],
+                    where: {
+                        id: req.params.idPrueba
+                    }
+                },{
+                    association: 'Usuario'
+                },{
+                    association: 'Categoria'
+                }
+            ]
+        })
+        let prueba = await db.Prueba.findByPk(req.params.idPrueba)
+        let concurso = await db.Concurso.findByPk(req.params.idConcurso, {include: [{association:'Hipico'}]})
+        let inscripciones = []
+        for(let i = 0 ; i < inscripcionesTodas.length ; i ++){
+            if(inscripcionesTodas[i].estado == 2){
+                inscripciones.push(inscripcionesTodas[i])
+                return res.render('detallePrueba', {inscripciones, prueba, concurso})
+                } else {
+                    return res.render('detallePrueba', {inscripciones, prueba, concurso})
+                }
+            }    
+        
     },
     pEdit:  async function(req, res){
         let categorias = await db.Categoria.findAll()

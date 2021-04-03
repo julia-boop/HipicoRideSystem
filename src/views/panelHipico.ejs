@@ -5,6 +5,35 @@
     <%- include('./partials/header') %> 
     <h1 class="pruebaTitle" style="margin-bottom: 40px
     ;">Panel de Administración para Organizaciones Hipicas</h1>
+          <div class="onCourseContainer">
+            <h2>Concursos en Curso</h2>
+            <% for(let i = 0 ; i < concursos.length ; i ++){ %>
+              <div class="onCourse">
+                <h3><%= concursos[i].nombre %> </h3>
+                <h5><%= concursos[i].fecha %> </h5>
+                <h4>Total recaudado hasta el momento:$ <%= ganancias[i] %> </h4>
+                <p>*El total se calcula unicamente en base a las inscripciones realizadas a traves de RideSystem</p>
+            </div>
+            <% } %> 
+          </div>
+          <div class="pendingContainer">
+              <h3>Deudas Pendientes</h3>
+              <h4>Importe mensual $<%= mensual %> </h4>
+              
+              <% for(let i = 0 ; i < concursosFinalizados.length ; i ++ ){ %>
+                <div class="pending">
+                  <h5><%= concursosFinalizados[i].nombre %> </h5>
+                  <h5><%= concursosFinalizados[i].fecha %> </h5>
+                  <h5>Total Recaudado:$<%= gananciasFin[i] %> </h5>
+                  <h5>Comision%:$<%= comisionFin[i] %> </h5>
+                  <h5>Deuda parcial:$<%= comisionFin[i] %> </h5>
+                </div>
+              <% } %> 
+              
+              <h5 class="pendingTotal" style="margin-bottom: 40px
+              ;">Deuda Total $<%= deudaTotal %> </h5>
+              <button style="width: 30%; margin-bottom: 40px; margin-top: 0px; border-radius: 5px;"> <a style="color: black;" href="">Pagar</a> </button> 
+          </div>
           <h2 style="width: 100%; text-align: center;">Mis Datos</h2>
     <div class="infoHipico formContainer">
       <form action="/hipico/<%= hipico.id %>/account?_method=put" method="POST" enctype="multipart/form-data">
@@ -25,49 +54,6 @@
       </form>
     </div>
 
-      <div class="onCourseContainer">
-        <h2>Concursos en Curso</h2>
-        <div class="onCourse">
-            <h3>Nombre del Concurso</h3>
-            <h5>Fecha del Concurso</h5>
-            <h4>Total recaudado hasta el momento:$$$$</h4>
-            <p>*El total se calcula unicamente en base a las inscripciones realizadas a traves de RideSystem</p>
-        </div>
-        <div class="onCourse">
-            <h3>Nombre del Concurso</h3>
-            <h5>Fecha del Concurso</h5>
-            <h4>Total recaudado hasta el momento:$$$$</h4>
-            <p>*El total se calcula unicamente en base a las inscripciones realizadas a traves de RideSystem</p>
-        </div>
-      </div>
-      <div class="pendingContainer">
-          <h3>Deudas Pendientes</h3>
-          <h4>Importe mensual $$$$$$</h4>
-          <h4>Comision de inscripciones $$$$$$</h4>
-          <div class="pending">
-            <h5>Nombre del Concurso</h5>
-            <h5>Fecha del Concurso</h5>
-            <h5>Total Recaudado:$$$$</h5>
-            <h5>Comision%:$$$$</h5>
-            <h5>Deuda parcial:$$$$</h5>
-          </div>
-          <div class="pending">
-            <h5>Nombre del Concurso</h5>
-            <h5>Fecha del Concurso</h5>
-            <h5>Total Recaudado:$$$$</h5>
-            <h5>Comision%:$$$$</h5>
-            <h5>Deuda parcial:$$$$</h5>
-          </div>
-          <h5 class="pendingTotal" style="margin-bottom: 40px
-          ;">Deuda Total $$$$$$</h5>
-      </div>
-      <div class="onCourseContainer">
-          <h2>Historial de Concursos</h2>
-          <div class="onCourse">
-            <h3>Nombre del Concurso</h3>
-            <h4>Total Recaudado</h4>
-            <p>*El total se calcula unicamente en base a las inscripciones realizadas a traves de RideSystem</p>
-          </div>
-      </div>
+
       <%- include('./partials/scripts') %>
       </body>

@@ -52,34 +52,80 @@ module.exports = {
         })
     },
     account: async (req, res) => {
+        let arr = []
+        let result = []
+        
+        let reducer = (a, b) => {
+            return a + b
+        }
+
+        function recCalc(g, p){
+            for(let i = 0 ; i < p.length ; i ++){
+                arr.push(g.splice(0, p[i]))
+            }
+            for(let i = 0 ; i < arr.length ; i ++){
+                result.push(arr[i].reduce(reducer))
+
+            }
+            return result
+        }
+
+        let arrFin = []
+        let resultFin = []
+        
+        function recCalcFin(g, p){
+            for(let i = 0 ; i < p.length ; i ++){
+                arrFin.push(g.splice(0, p[i]))
+            }
+            for(let i = 0 ; i < arrFin.length ; i ++){
+                resultFin.push(arrFin[i].reduce(reducer))
+            }
+            return resultFin
+        }
+
         let hipico = await db.Hipico.findByPk(req.params.idHipico)
         let concursos = await db.Concurso.findAll({
+            include:[{association:'Prueba'}],
             where: {
-                hipico_id: req.params.idHipico
+                hipico_id: req.params.idHipico, 
+                estado: 1
             }
         })
-        let pruebas = []
+        let gananciaActual = []
+        let pruebasCant = []
         for(let i = 0 ; i < concursos.length ; i ++){
-            pruebas.push(await db.Prueba.findAll({
-                include: [{association:'Concurso'}],
-                where: {
-                    concurso_id: concursos[i].id
-                }
-            }))
-        }
-        let gananciaActual = null
-        for(let i = 0 ; i < pruebas.length ; i ++){
-            if(pruebas[i].Concurso.estado == 1){
-                gananciaActual+=Number(pruebas[i].anotados*pruebas[i].precio)
+            pruebasCant.push(concursos[i].Prueba.length)
+            for(let j = 0 ; j < concursos[i].Prueba.length ; j++){
+               gananciaActual.push(Number(concursos[i].Prueba[j].anotados*concursos[i].Prueba[j].precio))
             }
         }
-        console.log(gananciaActual)
+        let ganancias = recCalc(gananciaActual, pruebasCant)
+        let mensual = 5000
 
-        
-        
-        return res.send(pruebas)
-        // return res.send(concursos)
-        return res.render('panelHipico', {hipico});
+        let concursosFinalizados = await db.Concurso.findAll({
+            include: [{association:'Prueba'}],
+            where: {
+                hipico_id: req.params.idHipico,
+                estado: 2
+            }
+        })
+        let gananciaActualFin = []
+        let pruebasCantFin = []
+        for(let i = 0 ; i < concursosFinalizados.length ; i ++){
+            pruebasCantFin.push(concursosFinalizados[i].Prueba.length)
+            for(let j = 0 ; j < concursosFinalizados[i].Prueba.length ; j++){
+               gananciaActualFin.push(Number(concursosFinalizados[i].Prueba[j].anotados*concursosFinalizados[i].Prueba[j].precio))
+            }
+        }
+        let gananciasFin = recCalcFin(gananciaActualFin, pruebasCantFin)
+        let comisionFin = []
+        for(let i = 0 ; i < gananciasFin.length ; i ++){
+            comisionFin.push(Number(Number(gananciasFin[i])*0.15).toFixed(0))
+
+        }
+        comisionFin = comisionFin.map(Number)
+        let deudaTotal = Number(comisionFin.reduce(reducer)+mensual)
+        return res.render('panelHipico', {hipico, concursos, ganancias, mensual, concursosFinalizados, gananciasFin, comisionFin, deudaTotal});
         
         
     },
@@ -107,7 +153,6 @@ module.exports = {
         })
         
         return res.redirect('/hipico/' + hFound.id + '/account');
-        //return res.render('panelHipico')
     },
     logout: (req, res) => {
         req.session.destroy()
