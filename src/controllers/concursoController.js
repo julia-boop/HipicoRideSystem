@@ -24,6 +24,9 @@ module.exports = {
                 },
                 {
                     association: 'Prueba',
+                    order: [
+                        ['numero', 'ASC']
+                    ],
                     include: [{association: 'Categoria'}]
                 }
             ]
@@ -61,15 +64,18 @@ module.exports = {
         let prueba = await db.Prueba.findByPk(req.params.idPrueba)
         let concurso = await db.Concurso.findByPk(req.params.idConcurso, {include: [{association:'Hipico'}]})
         let inscripciones = []
-        for(let i = 0 ; i < inscripcionesTodas.length ; i ++){
-            if(inscripcionesTodas[i].estado == 2){
-                inscripciones.push(inscripcionesTodas[i])
-                return res.render('detallePrueba', {inscripciones, prueba, concurso})
-                } else {
+        if(inscripcionesTodas.length != 0){
+            for(let i = 0 ; i < inscripcionesTodas.length ; i ++){
+                if(inscripcionesTodas[i].estado == 2){
+                    inscripciones.push(inscripcionesTodas[i])
                     return res.render('detallePrueba', {inscripciones, prueba, concurso})
-                }
-            }    
-        
+                    } else {
+                        return res.render('detallePrueba', {inscripciones, prueba, concurso})
+                    }
+                }    
+        } else {
+            return res.render('detallePrueba', {inscripciones, prueba, concurso})
+        }  
     },
     pEdit:  async function(req, res){
         let categorias = await db.Categoria.findAll()
@@ -78,7 +84,6 @@ module.exports = {
                 {association: 'Categoria'}
             ]
         })
-        // return res.send(prueba)
         return res.render('formPruebaEdit', {prueba, categorias});
     },
     pUpdate: async (req, res) => {
@@ -126,7 +131,6 @@ module.exports = {
             })
             db.Categoria_prueba.bulkCreate(cat);
             return res.redirect('/concurso/' + prueba.concurso_id + '/detail')
-
         }
     },
     cEdit: async function(req, res){

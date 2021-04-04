@@ -65,7 +65,6 @@ module.exports = {
             }
             for(let i = 0 ; i < arr.length ; i ++){
                 result.push(arr[i].reduce(reducer))
-
             }
             return result
         }
@@ -94,11 +93,14 @@ module.exports = {
         let gananciaActual = []
         let pruebasCant = []
         for(let i = 0 ; i < concursos.length ; i ++){
-            pruebasCant.push(concursos[i].Prueba.length)
-            for(let j = 0 ; j < concursos[i].Prueba.length ; j++){
-               gananciaActual.push(Number(concursos[i].Prueba[j].anotados*concursos[i].Prueba[j].precio))
+            if(concursos[i].Prueba.length != 0){
+                pruebasCant.push(concursos[i].Prueba.length)
+                for(let j = 0 ; j < concursos[i].Prueba.length ; j++){
+                   gananciaActual.push(Number(concursos[i].Prueba[j].anotados*concursos[i].Prueba[j].precio))
+                }
             }
         }
+    
         let ganancias = recCalc(gananciaActual, pruebasCant)
         let mensual = 5000
 
@@ -109,23 +111,33 @@ module.exports = {
                 estado: 2
             }
         })
-        let gananciaActualFin = []
-        let pruebasCantFin = []
-        for(let i = 0 ; i < concursosFinalizados.length ; i ++){
-            pruebasCantFin.push(concursosFinalizados[i].Prueba.length)
-            for(let j = 0 ; j < concursosFinalizados[i].Prueba.length ; j++){
-               gananciaActualFin.push(Number(concursosFinalizados[i].Prueba[j].anotados*concursosFinalizados[i].Prueba[j].precio))
+        if(concursosFinalizados.length != 0){
+            let gananciaActualFin = []
+            let pruebasCantFin = []
+            for(let i = 0 ; i < concursosFinalizados.length ; i ++){
+                pruebasCantFin.push(concursosFinalizados[i].Prueba.length)
+                for(let j = 0 ; j < concursosFinalizados[i].Prueba.length ; j++){
+                   gananciaActualFin.push(Number(concursosFinalizados[i].Prueba[j].anotados*concursosFinalizados[i].Prueba[j].precio))
+                }
             }
+            let gananciasFin = recCalcFin(gananciaActualFin, pruebasCantFin)
+            let comisionFin = []
+            for(let i = 0 ; i < gananciasFin.length ; i ++){
+                comisionFin.push(Number(Number(gananciasFin[i])*0.15).toFixed(0))
+            }
+            comisionFin = comisionFin.map(Number)
+            let deudaTotal = null
+            if(hipico.pago_mes == 2){
+                deudaTotal =  Number(comisionFin.reduce(reducer))
+            } else {
+                deudaTotal = Number(comisionFin.reduce(reducer)+mensual)
+            }
+            return res.render('panelHipico', {hipico, concursos, ganancias, mensual, concursosFinalizados, gananciasFin, comisionFin, deudaTotal});
+        } else {
+            let deudaTotal = 0 
+            return res.render('panelHipico', {hipico, concursos, ganancias, mensual, concursosFinalizados, deudaTotal});
         }
-        let gananciasFin = recCalcFin(gananciaActualFin, pruebasCantFin)
-        let comisionFin = []
-        for(let i = 0 ; i < gananciasFin.length ; i ++){
-            comisionFin.push(Number(Number(gananciasFin[i])*0.15).toFixed(0))
 
-        }
-        comisionFin = comisionFin.map(Number)
-        let deudaTotal = Number(comisionFin.reduce(reducer)+mensual)
-        return res.render('panelHipico', {hipico, concursos, ganancias, mensual, concursosFinalizados, gananciasFin, comisionFin, deudaTotal});
         
         
     },
@@ -157,5 +169,34 @@ module.exports = {
     logout: (req, res) => {
         req.session.destroy()
         res.redirect('/')
+    }, 
+    testPay: async (req, res) => {
+        let hUpdate = await db.Hipico.update({
+            pago_com: 2, 
+            pago_mes: 2,
+            pago_deuda: 2
+        }, {
+            where: {
+                id: req.params.idHipico
+            }
+        })
+        let cfind = await db.Concurso.findAll({
+            where: {
+                hipico_id: req.params.idHipico,
+                estado: 2 
+            }
+        })
+
+        for(let i = 0 ; i < cfind.length ; i ++){
+            await db.Concurso.update({
+                estado: 4
+            }, {
+                where: {
+                    id: cfind[i].id
+                }
+            })
+        }
+
+        return res.redirect('/hipico/' + req.params.idHipico + '/account')
     }
 }

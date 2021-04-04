@@ -13,7 +13,6 @@
           <h4>Numero: <%= prueba.numero %> </h4>
       </div>
       <div class="pruebasContainer">
-        <h6 class="animate__animated animate__fadeInLeft animate__slow"> ¿Llenaste el formulario y todavia no te ves en la lista? Ingresa a tu cuenta y luego a "Pagar Inscripciones" para finalizar el proceso</h6>
         <% if(inscripciones.length == 0 ){ %> 
             <h4 class="animate__animated animate__fadeInLeft animate__slow">Todavia no se inscribio nadie en esta prueba, querés ser el primer@? <a href="/concurso/<%= concurso.id %>/<%= prueba.id %>/inscripcion">Ingresá acá</a> </h4>
         <% } else {%>

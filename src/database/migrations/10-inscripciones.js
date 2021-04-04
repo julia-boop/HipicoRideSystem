@@ -36,6 +36,14 @@ module.exports = {
               type: Sequelize.DataTypes.STRING(150),
               allowNull: false
         },
+        nombre: {
+            type: Sequelize.DataTypes.STRING(150),
+            allowNull: false
+        },
+        apellido: {
+            type: Sequelize.DataTypes.STRING(150),
+            allowNull: false
+        },
         pais: {
             type: Sequelize.DataTypes.STRING(150),
             allowNull: false
@@ -43,6 +51,10 @@ module.exports = {
         club: {
             type: Sequelize.DataTypes.STRING(150),
             allowNull: false
+        },
+        estado: {
+            type: Sequelize.DataTypes.INTEGER(10).UNSIGNED,
+            allowNull: false,
         },
         created_at: Sequelize.DataTypes.DATE,
         updated_at: Sequelize.DataTypes.DATE

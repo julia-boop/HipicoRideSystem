@@ -29,5 +29,7 @@ router.put('/:idHipico/account', upload.any(), hipicoController.update);
 
 router.get('/logout', hipicoController.logout);
 
+router.get('/:idHipico/account/pagar', hipicoController.testPay)
+
 
 module.exports = router
