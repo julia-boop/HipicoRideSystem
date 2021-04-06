@@ -12,12 +12,19 @@
 
 /* --------------------------MOBILE HEADER-------------------------- */
 
+
+
 .navMobile{
     display: none
 }
+.navMobile div{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
 
 .navMobile a {
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .btnMenu {
@@ -244,16 +251,6 @@ svg:focus{
     outline: none;
     box-shadow: 0 0 5px 10px rgba(141, 141, 141, 0.541);
    border-radius: 5px;
-}
-
-.formContainer input[type=checkbox]{
-    margin: 0px;
-    margin-right: 5px;
-    width: min-content;
-}
-
-.formContainer p {
-    text-align: left;
 }
 
 /* --------------------------CONCURSOS-------------------------- */
@@ -544,6 +541,8 @@ svg:focus{
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -555,8 +554,9 @@ svg:focus{
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    height: max-content;
 }
 
 .pay button{
@@ -586,6 +586,15 @@ svg:focus{
     color: white;
 }
 
+.payCourse{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    border-bottom: 1px solid grey;
+}
+
 /* --------------------------MEDIA QUERIES-------------------------- */
 
 @media(max-width: 980px){
@@ -602,7 +611,12 @@ svg:focus{
     }
 
     .pay{
-        width: 70%;
+        width: 90%;
+    }
+
+    .payContainer{
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -661,9 +675,6 @@ svg:focus{
         width: 80%;
     }
 
-    /* .infoConcurso h1{
-        margin-top: 100px;
-    } */
 
     .pruebaTitle{
         margin-top: 70px;
@@ -676,6 +687,8 @@ svg:focus{
     .concursosContainer div{
         width: 55%;
     }
+
+
 
     .concursosContainer div h1, h2, h3, a{
         text-align: center;
@@ -720,6 +733,12 @@ svg:focus{
 
     .clientTotalDebt form button:hover{
         background-color: rgb(68, 68, 68);
+    }
+
+    .dataContainer{
+        width: 90%;
+        padding: 20px;
+        margin: 20px;
     }
 }
 
@@ -832,9 +851,7 @@ svg:focus{
         margin-left: 0px;
     }
 
-    .dataContainer{
-        width: 80%;
-    }
+
 
 
 }
